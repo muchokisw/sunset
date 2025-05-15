@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "985503737164",
+    "firebase_url": "https://sunsetmarketplace-default-rtdb.firebaseio.com",
+    "project_id": "sunsetmarketplace",
+    "storage_bucket": "sunsetmarketplace.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985503737164:android:e098e4ace00370cc7c5be9",
+        "android_client_info": {
+          "package_name": "com.example.sunset"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbyTb3UVNWQp7I0bGdCFQ9OnywbWUNx-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

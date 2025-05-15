@@ -1,0 +1,39 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "sunsetmarketplace",
+          "appId": "1:985503737164:android:e098e4ace00370cc7c5be9",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "sunsetmarketplace",
+          "configurations": {
+            "android": "1:985503737164:android:e098e4ace00370cc7c5be9",
+            "ios": "1:985503737164:ios:7d54633f016718427c5be9",
+            "macos": "1:985503737164:ios:7d54633f016718427c5be9",
+            "web": "1:985503737164:web:13538ae5bd2b5cbc7c5be9",
+            "windows": "1:985503737164:web:13538ae5bd2b5cbc7c5be9"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
