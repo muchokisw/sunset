@@ -267,9 +267,6 @@ class _CheckOutState extends State<CheckOut> {
                                               height: 100,
                                               width: 100,
                                               fit: BoxFit.cover,
-                                              errorBuilder: (context, error, stackTrace) {
-                                                return const Icon(Icons.error, size: 50);
-                                              },
                                             ),
                                           ),
                                         const SizedBox(width: 16),

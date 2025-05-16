@@ -210,19 +210,14 @@ class _ViewProductState extends State<ViewProduct> {
           ),
           child: ConstrainedBox(
             constraints: const BoxConstraints(
-              maxWidth: 600,
-              maxHeight: 400,
+              maxWidth: 800,
+              maxHeight: 1000,
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: Image.network(
                 imageUrl,
                 fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Center(
-                    child: Icon(Icons.error, size: 50),
-                  );
-                },
               ),
             ),
           ),
@@ -273,7 +268,7 @@ class _ViewProductState extends State<ViewProduct> {
                             Column(
                               children: [
                                 SizedBox(
-                                  height: 200, // Fixed height for the carousel
+                                  height: 350, // Fixed height for the carousel
                                   child: PageView.builder(
                                     controller: _pageController, // Use PageController
                                     itemCount: widget.product['images'].length,
@@ -289,12 +284,9 @@ class _ViewProductState extends State<ViewProduct> {
                                           borderRadius: BorderRadius.circular(12),
                                           child: Image.network(
                                             widget.product['images'][index],
-                                            height: 200,
+                                            height: 350,
                                             width: double.infinity,
                                             fit: BoxFit.cover,
-                                            errorBuilder: (context, error, stackTrace) {
-                                              return const Icon(Icons.error, size: 50);
-                                            },
                                           ),
                                         ),
                                       );

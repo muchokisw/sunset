@@ -221,9 +221,6 @@ class _StoreProfileTabState extends State<StoreProfileTab> {
                                     child: Image.network(
                                       _storeDetails!['banner'] as String,
                                       fit: BoxFit.contain,
-                                      errorBuilder: (context, error, stackTrace) {
-                                        return const Icon(Icons.error, size: 50);
-                                      },
                                     ),
                                   ),
                                 ),
@@ -238,9 +235,6 @@ class _StoreProfileTabState extends State<StoreProfileTab> {
                             height: 150,
                             width: double.infinity,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Icon(Icons.error, size: 50);
-                            },
                           ),
                         ),
                       ),
@@ -283,9 +277,6 @@ class _StoreProfileTabState extends State<StoreProfileTab> {
                                             child: Image.network(
                                               _storeDetails!['logo'],
                                               fit: BoxFit.contain,
-                                              errorBuilder: (context, error, stackTrace) {
-                                                return const Icon(Icons.error, size: 50);
-                                              },
                                             ),
                                           ),
                                         ),
@@ -481,9 +472,6 @@ class _ProductsTabState extends State<ProductsTab> {
                                                   child: Image.network(
                                                     product['images'][index],
                                                     fit: BoxFit.contain,
-                                                    errorBuilder: (context, error, stackTrace) {
-                                                      return const Icon(Icons.error, size: 50);
-                                                    },
                                                   ),
                                                 ),
                                               ),
@@ -498,9 +486,6 @@ class _ProductsTabState extends State<ProductsTab> {
                                           height: 200,
                                           width: double.infinity,
                                           fit: BoxFit.cover,
-                                          errorBuilder: (context, error, stackTrace) {
-                                            return const Icon(Icons.error, size: 50);
-                                          },
                                         ),
                                       ),
                                     );
@@ -634,9 +619,6 @@ class _ProductsTabState extends State<ProductsTab> {
                             width: 50,
                             height: 50,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Icon(Icons.error, size: 50);
-                            },
                           ),
                         )
                       : const Icon(Icons.image, size: 50),

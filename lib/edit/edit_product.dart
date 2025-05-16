@@ -380,9 +380,6 @@ class _EditProductPageState extends State<EditProductPage> {
                                               fit: BoxFit.cover,
                                               width: 100,
                                               height: 100,
-                                              errorBuilder: (context, error, stackTrace) {
-                                                return const Icon(Icons.error, size: 50);
-                                              },
                                             ),
                                           ),
                                         ),

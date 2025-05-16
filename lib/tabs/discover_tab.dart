@@ -637,7 +637,7 @@ class _DiscoverTabState extends State<DiscoverTab> {
                       },
                       child: Center(
                         child: SizedBox(
-                          height: 300,
+                          height: 500,
                           width: 400,
                           child: Card(
                             elevation: 4,
@@ -651,12 +651,9 @@ class _DiscoverTabState extends State<DiscoverTab> {
                                   child: product['images'] != null && product['images'].isNotEmpty
                                       ? Image.network(
                                           product['images'][0],
-                                          height: 150,
+                                          height: 350,
                                           width: double.infinity,
                                           fit: BoxFit.cover, // Ensure the image fits the space
-                                          errorBuilder: (context, error, stackTrace) {
-                                            return const Icon(Icons.error, size: 50);
-                                          },
                                         )
                                       : const Icon(Icons.image, size: 150),
                                 ),
@@ -759,7 +756,7 @@ class _DiscoverTabState extends State<DiscoverTab> {
         ),
         const SizedBox(height: 8),
         SizedBox(
-          height: 300,
+          height: 500,
           child: Stack(
             children: [
               // Horizontal ListView
@@ -782,7 +779,7 @@ class _DiscoverTabState extends State<DiscoverTab> {
                       );
                     },
                     child: SizedBox(
-                      width: 250,
+                      width: 300,
                       child: Card(
                         elevation: 4,
                         child: Column(
@@ -793,12 +790,9 @@ class _DiscoverTabState extends State<DiscoverTab> {
                               child: product['images'] != null && product['images'].isNotEmpty
                                   ? Image.network(
                                       product['images'][0],
-                                      height: 150,
+                                      height: 350,
                                       width: double.infinity,
                                       fit: BoxFit.cover,
-                                      errorBuilder: (context, error, stackTrace) {
-                                        return const Icon(Icons.error, size: 50);
-                                      },
                                     )
                                   : const Icon(Icons.image, size: 150),
                             ),

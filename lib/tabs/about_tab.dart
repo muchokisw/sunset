@@ -67,7 +67,7 @@ class _AboutTabState extends State<AboutTab> {
                       ),
                       const SizedBox(height: 16.0),
                       const Text(
-                        'Our platform leverages cutting-edge technology to provide personalized shopping experiences and efficient supply chain solutions.',
+                        'Our platform provides personalized shopping experiences and efficient supply chain solutions.',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
                       ),
@@ -82,7 +82,7 @@ class _AboutTabState extends State<AboutTab> {
                         key: _formKey,
                         child: Column(
                           children: [
-                            // Styled email input field
+                            // Styled email input field with send icon button
                             ConstrainedBox(
                               constraints: const BoxConstraints(maxWidth: 600),
                               child: Container(
@@ -117,17 +117,22 @@ class _AboutTabState extends State<AboutTab> {
                                           }
                                           return null;
                                         },
+                                        onFieldSubmitted: (_) => _submitEmail(),
                                       ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.send),
+                                        color: Theme.of(context).brightness == Brightness.light
+                                          ? Colors.grey
+                                          : Colors.grey[700],
+                                      onPressed: _submitEmail,
+                                      tooltip: 'Send',
                                     ),
                                   ],
                                 ),
                               ),
                             ),
                             const SizedBox(height: 16.0),
-                            ElevatedButton(
-                              onPressed: _submitEmail,
-                              child: const Text('Submit'),
-                            ),
                           ],
                         ),
                       ),

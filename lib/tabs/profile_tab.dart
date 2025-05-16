@@ -22,8 +22,11 @@ class _ProfileTabState extends State<ProfileTab> {
   String _name = '';
   String _email = '';
   String _phone = '';
-  String _deliveryAddress = ''; // Updated to use deliveryAddress
+  String _deliveryAddress = '';
   String? _photoUrl;
+  String _country = '';
+  String _city = '';
+  DateTime? _dateOfBirth;
 
   @override
   void initState() {
@@ -45,8 +48,16 @@ class _ProfileTabState extends State<ProfileTab> {
           _name = userData['name'] ?? '';
           _email = userData['email'] ?? '';
           _phone = userData['phone'] ?? '';
-          _deliveryAddress = userData['deliveryAddress'] ?? ''; // Fetch deliveryAddress
+          _deliveryAddress = userData['deliveryAddress'] ?? '';
           _photoUrl = userData['photo'];
+          _country = userData['country'] ?? '';
+          _city = userData['city'] ?? '';
+          final dob = userData['dateOfBirth'];
+          if (dob != null && dob is String && dob.isNotEmpty) {
+            _dateOfBirth = DateTime.tryParse(dob);
+          } else {
+            _dateOfBirth = null;
+          }
         });
       }
     }
@@ -59,12 +70,14 @@ class _ProfileTabState extends State<ProfileTab> {
         builder: (context) => EditProfilePage(
           name: _name,
           phone: _phone,
-          address: _deliveryAddress, // Pass deliveryAddress to EditProfilePage
+          address: _deliveryAddress,
           photoUrl: _photoUrl,
+          country: _country,
+          city: _city,
+          dateOfBirth: _dateOfBirth ?? DateTime(2000, 1, 1),
         ),
       ),
     ).then((_) {
-      // Reload profile data after returning from the Edit Profile page
       _loadUserData();
     });
   }
@@ -109,51 +122,50 @@ class _ProfileTabState extends State<ProfileTab> {
                           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 16),
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            CircleAvatar(
-                              radius: 50,
-                              backgroundImage: _photoUrl != null
-                                  ? NetworkImage(_photoUrl!)
-                                  : null,
-                            ),
-                            if (_photoUrl != null)
-                              Positioned.fill(
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return Dialog(
-                                            insetPadding: const EdgeInsets.all(16),
-                                            child: ConstrainedBox(
-                                              constraints: const BoxConstraints(
-                                                maxWidth: 600, // Limit width to 600
-                                                maxHeight: 300, // Limit height to 300
-                                              ),
-                                              child: ClipRRect(
-                                                borderRadius: BorderRadius.circular(12),
-                                                child: Image.network(
+                        Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              if (_photoUrl != null) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Dialog(
+                                      insetPadding: const EdgeInsets.all(16),
+                                      child: ConstrainedBox(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 600,
+                                          maxHeight: 400,
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(12),
+                                          child: _photoUrl != null
+                                              ? Image.network(
                                                   _photoUrl!,
                                                   fit: BoxFit.contain,
-                                                  errorBuilder: (context, error, stackTrace) {
-                                                    return const Icon(Icons.error, size: 50);
-                                                  },
+                                                )
+                                              : const Icon(
+                                                  Icons.person,
+                                                  size: 100,
+                                                  color: Colors.grey,
                                                 ),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                              ),
-                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              }
+                            },
+                            child: CircleAvatar(
+                              radius: 50,
+                              backgroundColor: Colors.grey[300],
+                              backgroundImage: _photoUrl != null
+                                  ? NetworkImage(_photoUrl!) as ImageProvider
+                                  : null,
+                              child: _photoUrl == null
+                                  ? const Icon(Icons.person, size: 50, color: Colors.grey)
+                                  : null,
+                            ),
+                          ),
                         ),
                         const SizedBox(height: 16),
                         ListTile(
@@ -169,8 +181,24 @@ class _ProfileTabState extends State<ProfileTab> {
                           subtitle: Text(_phone),
                         ),
                         ListTile(
-                          title: const Text('Delivery Address:'), // Updated label
-                          subtitle: Text(_deliveryAddress), // Display deliveryAddress
+                          title: const Text('Delivery Address:'),
+                          subtitle: Text(_deliveryAddress),
+                        ),
+                        ListTile(
+                          title: const Text('Country:'),
+                          subtitle: Text(_country),
+                        ),
+                        ListTile(
+                          title: const Text('City:'),
+                          subtitle: Text(_city),
+                        ),
+                        ListTile(
+                          title: const Text('Date of Birth:'),
+                          subtitle: Text(
+                            _dateOfBirth != null
+                                ? "${_dateOfBirth!.toLocal()}".split(' ')[0]
+                                : '',
+                          ),
                         ),
                         const SizedBox(height: 24),
                         ElevatedButton(

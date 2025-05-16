@@ -197,9 +197,6 @@ class _CategoriesTabState extends State<CategoriesTab> {
                             width: 50,
                             height: 50,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Icon(Icons.error, size: 50);
-                            },
                           ),
                         )
                       : const Icon(Icons.category, size: 50),

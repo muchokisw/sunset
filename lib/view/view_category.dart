@@ -268,7 +268,7 @@ class _ViewCategoryState extends State<ViewCategory> {
                   )
                 : _filteredProducts.isEmpty
                     ? const Center(
-                        child: Text('Coming Soon...'),
+                        child: Text('Coming Soon'),
                       )
                     : ListView.builder(
                         itemCount: _filteredProducts.length,
@@ -287,7 +287,7 @@ class _ViewCategoryState extends State<ViewCategory> {
                               },
                               child: Center(
                                 child: SizedBox(
-                                  height: 300,
+                                  height: 500,
                                   width: 400,
                                   child: Card(
                                     elevation: 4,
@@ -301,12 +301,9 @@ class _ViewCategoryState extends State<ViewCategory> {
                                           child: product['images'] != null && product['images'].isNotEmpty
                                               ? Image.network(
                                                   product['images'][0],
-                                                  height: 150,
+                                                  height: 350,
                                                   width: double.infinity,
                                                   fit: BoxFit.cover,
-                                                  errorBuilder: (context, error, stackTrace) {
-                                                    return const Icon(Icons.error, size: 50);
-                                                  },
                                                 )
                                               : const Icon(Icons.image, size: 150),
                                         ),

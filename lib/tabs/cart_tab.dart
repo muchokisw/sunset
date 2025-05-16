@@ -326,9 +326,6 @@ class _CartTabState extends State<CartTab> with SingleTickerProviderStateMixin {
                                                             height: 100,
                                                             width: 100,
                                                             fit: BoxFit.cover,
-                                                            errorBuilder: (context, error, stackTrace) {
-                                                              return const Icon(Icons.error, size: 50);
-                                                            },
                                                           ),
                                                         ),
                                                       const SizedBox(width: 16),
@@ -395,16 +392,16 @@ class _CartTabState extends State<CartTab> with SingleTickerProviderStateMixin {
                                           crossAxisAlignment: CrossAxisAlignment.center, // Center content horizontally
                                           children: [
                                             // Centered Cart Icon and Text
-                                            Center(
+                                            const Center(
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.min, // Center the row's content
                                                 children: [
-                                                  const Icon(
+                                                  Icon(
                                                     Icons.shopping_cart,
                                                     size: 24,
                                                   ),
-                                                  const SizedBox(width: 8),
-                                                  const Text(
+                                                  SizedBox(width: 8),
+                                                  Text(
                                                     'Your Cart',
                                                     style: TextStyle(
                                                       fontSize: 16,
@@ -551,9 +548,6 @@ class _CartTabState extends State<CartTab> with SingleTickerProviderStateMixin {
                                                                       height: 100,
                                                                       width: 100,
                                                                       fit: BoxFit.cover,
-                                                                      errorBuilder: (context, error, stackTrace) {
-                                                                        return const Icon(Icons.error, size: 50);
-                                                                      },
                                                                     ),
                                                                   ),
                                                                 const SizedBox(width: 16),
@@ -605,12 +599,12 @@ class _CartTabState extends State<CartTab> with SingleTickerProviderStateMixin {
                                                   child: Column(
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
-                                                      Row(
+                                                      const Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
-                                                          const Icon(Icons.local_shipping, size: 20),
-                                                          const SizedBox(width: 8),
-                                                          const Text(
+                                                          Icon(Icons.local_shipping, size: 20),
+                                                          SizedBox(width: 8),
+                                                          Text(
                                                             'Delivery Information',
                                                             style: TextStyle(
                                                               fontSize: 16,

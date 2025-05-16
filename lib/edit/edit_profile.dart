@@ -11,9 +11,9 @@ class EditProfilePage extends StatefulWidget {
   final String phone;
   final String address;
   final String? photoUrl;
-  final String? country;
-  final String? city;
-  final DateTime? dateOfBirth;
+  final String country;      // Made non-nullable
+  final String city;         // Made non-nullable
+  final DateTime dateOfBirth; // Made non-nullable
 
   const EditProfilePage({
     super.key,
@@ -21,9 +21,9 @@ class EditProfilePage extends StatefulWidget {
     required this.phone,
     required this.address,
     this.photoUrl,
-    this.country,
-    this.city,
-    this.dateOfBirth,
+    required this.country,      // Required and non-nullable
+    required this.city,         // Required and non-nullable
+    required this.dateOfBirth,  // Required and non-nullable
   });
 
   @override
@@ -34,25 +34,54 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final _formKey = GlobalKey<FormState>();
   late String _name;
   late String _phone;
-  late String _deliveryAddress; // Corrected variable name
-  late String _country;
-  late String _city;
-  DateTime? _dateOfBirth;
+  late String _deliveryAddress;
+  late String _country;      // Made non-nullable
+  late String _city;         // Made non-nullable
+  late DateTime _dateOfBirth; // Made non-nullable
   int? _age;
   Uint8List? _photoBytes;
   String? _photoUrl;
+
+  // Add controllers
+  late TextEditingController _nameController;
+  late TextEditingController _phoneController;
+  late TextEditingController _countryController;
+  late TextEditingController _cityController;
+  late TextEditingController _deliveryAddressController;
+  late TextEditingController _dateOfBirthController;
 
   @override
   void initState() {
     super.initState();
     _name = widget.name;
     _phone = widget.phone;
-    _deliveryAddress = widget.address; // Use the correct field for deliveryAddress
+    _deliveryAddress = widget.address;
     _photoUrl = widget.photoUrl;
-    _country = widget.country ?? '';
-    _city = widget.city ?? '';
+    _country = widget.country;
+    _city = widget.city;
     _dateOfBirth = widget.dateOfBirth;
-    _age = _dateOfBirth != null ? _calculateAge(_dateOfBirth!) : null;
+    _age = _calculateAge(_dateOfBirth);
+
+    // Initialize controllers with initial values
+    _nameController = TextEditingController(text: _name);
+    _phoneController = TextEditingController(text: _phone);
+    _countryController = TextEditingController(text: _country);
+    _cityController = TextEditingController(text: _city);
+    _deliveryAddressController = TextEditingController(text: _deliveryAddress);
+    _dateOfBirthController = TextEditingController(
+      text: _dateOfBirth.toLocal().toString().split(' ')[0],
+    );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    _countryController.dispose();
+    _cityController.dispose();
+    _deliveryAddressController.dispose();
+    _dateOfBirthController.dispose();
+    super.dispose();
   }
 
   int _calculateAge(DateTime dateOfBirth) {
@@ -130,10 +159,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
         }
 
         // Calculate age if dateOfBirth is provided
-        if (_dateOfBirth != null) {
-          _age = _calculateAge(_dateOfBirth!);
-        }
-
+        _age = _calculateAge(_dateOfBirth);
+      
         // Update user details in Firestore
         final user = FirebaseAuth.instance.currentUser;
         if (user != null) {
@@ -144,7 +171,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             'photo': photoUrl,
             'country': _country,
             'city': _city,
-            'dateOfBirth': _dateOfBirth?.toIso8601String(),
+            'dateOfBirth': _dateOfBirth.toIso8601String(),
             'age': _age,
           });
 
@@ -167,7 +194,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Future<void> _pickDateOfBirth() async {
     final selectedDate = await showDatePicker(
       context: context,
-      initialDate: _dateOfBirth ?? DateTime(2000),
+      initialDate: _dateOfBirth,
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
@@ -175,7 +202,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
     if (selectedDate != null) {
       setState(() {
         _dateOfBirth = selectedDate;
-        _age = _calculateAge(selectedDate); // Update age when dateOfBirth is selected
+        _age = _calculateAge(selectedDate);
+        _dateOfBirthController.text = _dateOfBirth.toLocal().toString().split(' ')[0];
       });
     }
   }
@@ -259,7 +287,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             child: Center(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(
-                  maxWidth: 600, // Limit the width to 600 pixels
+                  maxWidth: 600,
                 ),
                 child: Card(
                   elevation: 4,
@@ -356,7 +384,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             const SizedBox(height: 16),
                             _buildLabeledInputField(
                               label: 'Name',
-                              controller: TextEditingController(text: _name),
+                              controller: _nameController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your name.';
@@ -373,11 +401,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               child: AbsorbPointer(
                                 child: _buildLabeledInputField(
                                   label: 'Date of Birth',
-                                  controller: TextEditingController(
-                                    text: _dateOfBirth != null
-                                        ? _dateOfBirth!.toLocal().toString().split(' ')[0]
-                                        : '',
-                                  ),
+                                  controller: _dateOfBirthController,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Please select your date of birth.';
@@ -385,7 +409,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     return null;
                                   },
                                   onSaved: (value) {},
-                                  readOnly: true, // Make the field read-only for Date of Birth
+                                  readOnly: true,
                                   suffixIcon: const Icon(Icons.calendar_today, color: Colors.grey),
                                 ),
                               ),
@@ -393,7 +417,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             const SizedBox(height: 16),
                             _buildLabeledInputField(
                               label: 'Phone',
-                              controller: TextEditingController(text: _phone),
+                              controller: _phoneController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your phone number.';
@@ -407,7 +431,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             const SizedBox(height: 16),
                             _buildLabeledInputField(
                               label: 'Country',
-                              controller: TextEditingController(text: _country),
+                              controller: _countryController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your country.';
@@ -421,7 +445,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             const SizedBox(height: 16),
                             _buildLabeledInputField(
                               label: 'City',
-                              controller: TextEditingController(text: _city),
+                              controller: _cityController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your city.';
@@ -435,7 +459,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             const SizedBox(height: 16),
                             _buildLabeledInputField(
                               label: 'Delivery Address',
-                              controller: TextEditingController(text: _deliveryAddress),
+                              controller: _deliveryAddressController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your delivery address.';
@@ -445,7 +469,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               onSaved: (value) {
                                 _deliveryAddress = value!;
                               },
-                              maxLines: 3, // Make the field three times as tall
+                              maxLines: 3,
                             ),
                             const SizedBox(height: 24),
                             Center(

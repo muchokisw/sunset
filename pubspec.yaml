@@ -107,4 +107,4 @@ flutter_launcher_icons:
   ios: true
   web: 
     generate: true
-  image_path: "assets/s_logo_gradient.png" # Path to your new icon
+  image_path: "assets/s_logo_gray.png" # Path to your new icon

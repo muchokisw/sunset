@@ -633,11 +633,11 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                                       filled: true,
                                       fillColor: isDarkMode ? Colors.grey[900] : Colors.grey[200],
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
+                                        borderRadius: BorderRadius.circular(24),
                                         borderSide: BorderSide.none,
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
+                                        borderRadius: BorderRadius.circular(24),
                                         borderSide: BorderSide.none,
                                       ),
                                       hintStyle: TextStyle(

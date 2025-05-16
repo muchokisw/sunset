@@ -187,7 +187,7 @@ class _ContactTabState extends State<ContactTab> {
                             const SizedBox(height: 16.0),
                             ElevatedButton(
                               onPressed: _submitContactMessage,
-                              child: const Text('Submit'),
+                              child: const Text('Send'),
                             ),
                           ],
                         ),
