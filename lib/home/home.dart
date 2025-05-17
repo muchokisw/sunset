@@ -65,15 +65,16 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const Text('Sign Up'),
           ),
           const SizedBox(width: 8),*/ // Add spacing between buttons
-          IconButton(
-            icon: Icon(
-              ThemeNotifier.themeMode.value == ThemeMode.light
-                  ? Icons.dark_mode
-                  : Icons.light_mode,
+          ValueListenableBuilder<ThemeMode>(
+            valueListenable: ThemeNotifier.themeMode,
+            builder: (context, mode, _) => IconButton(
+              icon: Icon(
+                mode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
+              ),
+              onPressed: () {
+                ThemeNotifier.toggleTheme();
+              },
             ),
-            onPressed: () {
-              ThemeNotifier.toggleTheme(); // Toggle the theme
-            },
           ),
         ],
       ),

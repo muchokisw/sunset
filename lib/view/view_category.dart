@@ -287,8 +287,10 @@ class _ViewCategoryState extends State<ViewCategory> {
                               },
                               child: Center(
                                 child: SizedBox(
-                                  height: 500,
-                                  width: 400,
+                                  width: MediaQuery.of(context).size.width * 0.85 > 400
+                                      ? 400
+                                      : MediaQuery.of(context).size.width * 0.85,
+                                  height: 450,
                                   child: Card(
                                     elevation: 4,
                                     child: Column(
@@ -301,7 +303,7 @@ class _ViewCategoryState extends State<ViewCategory> {
                                           child: product['images'] != null && product['images'].isNotEmpty
                                               ? Image.network(
                                                   product['images'][0],
-                                                  height: 350,
+                                                  height: 300,
                                                   width: double.infinity,
                                                   fit: BoxFit.cover,
                                                 )

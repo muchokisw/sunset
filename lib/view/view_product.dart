@@ -200,7 +200,7 @@ class _ViewProductState extends State<ViewProduct> {
     }
   }
 
-  void _showImageDialog(String imageUrl) {
+  /*void _showImageDialog(String imageUrl) {
     showDialog(
       context: context,
       builder: (context) {
@@ -211,7 +211,7 @@ class _ViewProductState extends State<ViewProduct> {
           child: ConstrainedBox(
             constraints: const BoxConstraints(
               maxWidth: 800,
-              maxHeight: 1000,
+              //maxHeight: 1000,
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
@@ -224,7 +224,7 @@ class _ViewProductState extends State<ViewProduct> {
         );
       },
     );
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -279,7 +279,7 @@ class _ViewProductState extends State<ViewProduct> {
                                     },
                                     itemBuilder: (context, index) {
                                       return GestureDetector(
-                                        onTap: () => _showImageDialog(widget.product['images'][index]),
+                                        //onTap: () => _showImageDialog(widget.product['images'][index]),
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(12),
                                           child: Image.network(

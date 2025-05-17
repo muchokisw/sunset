@@ -110,15 +110,16 @@ class _UserHomeState extends State<UserHome> {
       appBar: AppBar(
         title: const Text('Sunset Preview'),
         actions: [
-          IconButton(
-            icon: Icon(
-              ThemeNotifier.themeMode.value == ThemeMode.light
-                  ? Icons.dark_mode
-                  : Icons.light_mode,
+         ValueListenableBuilder<ThemeMode>(
+          valueListenable: ThemeNotifier.themeMode,
+          builder: (context, mode, _) => IconButton(
+             icon: Icon(
+             mode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
+             ),
+             onPressed: () {
+              ThemeNotifier.toggleTheme();
+              },
             ),
-            onPressed: () {
-              ThemeNotifier.toggleTheme(); // Toggle the theme
-            },
           ),
         ],
       ),

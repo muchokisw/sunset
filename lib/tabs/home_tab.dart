@@ -466,7 +466,7 @@ Future<void> _loadData() async {
                             const SizedBox(height: 8),
                             // Horizontal ListView with Arrow Buttons
                             SizedBox(
-                              height: 500, // Set a fixed height for the carousel
+                              height: 450, // Set a fixed height for the carousel
                               child: Stack(
                                 children: [
                                   ListView.builder(
@@ -488,7 +488,7 @@ Future<void> _loadData() async {
                                             );
                                           },
                                           child: SizedBox(
-                                            width: 300, // Fixed card width
+                                            width: 250, // Fixed card width
                                             child: Card(
                                               elevation: 4,
                                               child: Column(
@@ -499,7 +499,7 @@ Future<void> _loadData() async {
                                                     child: product['images'] != null && product['images'].isNotEmpty
                                                         ? Image.network(
                                                             product['images'][0],
-                                                            height: 350, // Fixed height for images
+                                                            height: 300, // Fixed height for images
                                                             width: double.infinity,
                                                             fit: BoxFit.cover, // Ensure consistent aspect ratio
                                                           )
@@ -615,8 +615,10 @@ Future<void> _loadData() async {
                             },
                             child: Center(
                               child: SizedBox(
-                                height: 500, // Match the height of the carousel cards
-                                width: 400,  // This should not match the carousel width
+                                width: MediaQuery.of(context).size.width * 0.85 > 400
+                                    ? 400
+                                    : MediaQuery.of(context).size.width * 0.85,
+                                height: 450,
                                 child: Card(
                                   elevation: 4,
                                   child: Column(
@@ -629,7 +631,7 @@ Future<void> _loadData() async {
                                         child: product['images'] != null && product['images'].isNotEmpty
                                             ? Image.network(
                                                 product['images'][0],
-                                                height: 350, // Match the height of the carousel images
+                                                height: 300, // Match the height of the carousel images
                                                 width: double.infinity,
                                                 fit: BoxFit.cover,
                                               )
