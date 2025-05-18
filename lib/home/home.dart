@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
 import '../auth/sign_in.dart'; // Import the sign-in page
 //import '../auth/sign_up.dart'; // Import the sign-up page
 import '../tabs/home_tab.dart'; // Import the HomeTab widget
@@ -27,6 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    html.document.title = 'Sunset Marketplace'; // Set your desired title
   }
 
   @override

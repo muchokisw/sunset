@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async'; // Import for StreamSubscription
+import 'dart:html' as html; // Import for setting document title
 import '../tabs/discover_tab.dart';
 import '../tabs/notifications_tab.dart';
 import '../tabs/profile_tab.dart';
@@ -27,6 +28,7 @@ class _UserHomeState extends State<UserHome> {
   @override
   void initState() {
     super.initState();
+    html.document.title = 'Sunset Marketplace'; // Set your desired title
     _listenToCartCount();
     _listenToUnreadNotifications();
     _pages.addAll([

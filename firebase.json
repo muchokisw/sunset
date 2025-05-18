@@ -29,7 +29,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites_disabled": [
+    "rewrites": [
       {
         "source": "**",
         "destination": "/index.html"

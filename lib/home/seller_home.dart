@@ -9,6 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 import '../theme_notifier.dart'; // Import ThemeNotifier
+import 'dart:html' as html;
 
 class SellerHome extends StatefulWidget {
   const SellerHome({super.key});
@@ -29,6 +30,7 @@ class _SellerHomeState extends State<SellerHome> {
   @override
   void initState() {
     super.initState();
+    html.document.title = 'Sunset Marketplace'; // Set your desired title
     _listenToCartCount();
     _listenToUnreadNotifications();
     _pages.addAll([

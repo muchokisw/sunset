@@ -1,6 +1,6 @@
 {
-    "name": "sunset",
-    "short_name": "sunset",
+    "name": "Sunset Marketplace",
+    "short_name": "Sunset Marketplace",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

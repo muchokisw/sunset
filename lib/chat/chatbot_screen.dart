@@ -507,7 +507,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: isDarkMode ? Colors.grey[900] : Colors.grey[200],
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(24),
                     ),
                     padding: const EdgeInsets.all(8.0),
                     child: _messages.isEmpty
