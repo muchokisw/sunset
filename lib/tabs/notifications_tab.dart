@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:html' as html;
 
 class NotificationsTab extends StatelessWidget {
   const NotificationsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     final userId = FirebaseAuth.instance.currentUser?.uid;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 

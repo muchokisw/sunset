@@ -9,11 +9,11 @@ import 'home/seller_home.dart'; // Import seller home
 import 'home/admin_home.dart'; // Import admin home
 import 'auth/sign_in.dart'; // Import sign-in page
 import 'theme_notifier.dart';
-import 'dart:html' as html;
+//import 'dart:html' as html;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  html.document.title = 'Sunset Marketplace'; // Set global title
+  //html.document.title = 'Sunset Marketplace'; // Set global title
   // Initialize Firebase with platform-specific options
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:typed_data';
 import '../theme_notifier.dart'; // Import ThemeNotifier
+import 'dart:html' as html;
 
 class EditProfilePage extends StatefulWidget {
   final String name;
@@ -265,6 +266,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Profile'),

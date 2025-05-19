@@ -6,6 +6,7 @@ import '../home/seller_home.dart'; // Import seller home
 import '../home/user_home.dart'; // Import user home
 import '../theme_notifier.dart'; // Import theme notifier
 import 'sign_up.dart'; // Import the signup page
+import 'dart:html' as html; // Import for setting the title
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -89,6 +90,8 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sign In'),

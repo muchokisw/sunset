@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../edit/edit_profile.dart';
 import '../home/home.dart'; // Import your HomeScreen widget
+import 'dart:html' as html;
 //import 'open_store.dart';
 //import 'edit_store.dart';
 //import 'add_product.dart';
@@ -100,6 +101,8 @@ class _ProfileTabState extends State<ProfileTab> {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     return Column(
       children: [
         Expanded(

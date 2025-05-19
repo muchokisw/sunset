@@ -33,11 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    html.document.title = 'Sunset Marketplace'; // Set your desired title
+    //html.document.title = 'Sunset Marketplace'; // Set your desired title
   }
 
   @override
   Widget build(BuildContext context) {
+    
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sunset Preview'), // Updated title

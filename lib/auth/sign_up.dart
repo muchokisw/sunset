@@ -5,6 +5,7 @@ import 'package:intl/intl.dart'; // For date formatting
 import '../theme_notifier.dart'; // Import ThemeNotifier
 import '../home/user_home.dart'; // Import user home
 import 'sign_in.dart'; // Import sign-in page
+import 'dart:html' as html; // For setting the document title
 
 class NormalSignup extends StatefulWidget {
   const NormalSignup({super.key});
@@ -115,6 +116,8 @@ class _NormalSignupState extends State<NormalSignup> {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
 
     return Scaffold(
       appBar: AppBar(

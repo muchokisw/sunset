@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import '../chat/gemini_service.dart';
 import '../theme_notifier.dart'; // Import ThemeNotifier
+import 'dart:html' as html;
 
 class SendMessageIntent extends Intent {
   const SendMessageIntent();
@@ -386,6 +387,8 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -512,39 +515,42 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: _messages.isEmpty
                         ? Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Welcome to Shop Assist!',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: isDarkMode ? Colors.white : Colors.black,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Welcome to Shop Assist!',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: isDarkMode ? Colors.white : Colors.black,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  'Here are some tips to get a good response:',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: isDarkMode ? Colors.white : Colors.black,
+                                  const SizedBox(height: 16),
+                                  Text(
+                                    'Here are some tips to get a good response:',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: isDarkMode ? Colors.white : Colors.black,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 8),
-                                const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('• Be specific with your questions.'),
-                                    Text('• Provide context if needed.'),
-                                    Text('• Ask one question at a time.'),
-                                    Text('• Use clear and concise language.'),
-                                  ],
-                                ),
-                              ],
+                                  const SizedBox(height: 8),
+                                  const Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('• Be specific with your questions.'),
+                                      Text('• Provide context if needed.'),
+                                      Text('• Ask one question at a time.'),
+                                      Text('• Use clear and concise language.'),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           )
                         : ListView.builder(

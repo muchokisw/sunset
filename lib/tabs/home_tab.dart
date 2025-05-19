@@ -8,6 +8,7 @@ import '/view/view_category.dart';
 import '../chat/chatbot_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
+import 'dart:html' as html;
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -292,6 +293,8 @@ Future<void> _loadData() async {
 
   @override
   Widget build(BuildContext context) {
+
+    html.document.title = 'Sunset Marketplace';
     if (_isLoading) {
       return const Center(
         child: CircularProgressIndicator(),

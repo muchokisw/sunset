@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import '../theme_notifier.dart'; // Import ThemeNotifier
+import 'dart:html' as html; // Import for setting the document title
 
 class ViewProduct extends StatefulWidget {
   final Map<String, dynamic> product;
@@ -228,6 +229,8 @@ class _ViewProductState extends State<ViewProduct> {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.product['name'] ?? 'Product Details'),

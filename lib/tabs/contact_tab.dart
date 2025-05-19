@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:html' as html;
 
 class ContactTab extends StatefulWidget {
   const ContactTab({super.key});
@@ -54,6 +55,8 @@ class _ContactTabState extends State<ContactTab> {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     return Scaffold(
       body: Center(
         child: Column(

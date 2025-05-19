@@ -5,6 +5,7 @@ import '../view/view_product.dart'; // Import the ViewProduct page
 import 'dart:async'; // Import for StreamSubscription
 import '../add/check_out.dart'; // Import the CheckOut page
 import 'package:intl/intl.dart'; // Import intl package
+import 'dart:html' as html;
 
 String formatPrice(num price) {
   final formatter = NumberFormat('#,##0');
@@ -246,6 +247,8 @@ class _CartTabState extends State<CartTab> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     return Scaffold(
       body: Column(
         children: [

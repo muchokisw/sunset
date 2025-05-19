@@ -7,6 +7,7 @@ import '../chat/chatbot_screen.dart'; // Import the ChatbotScreen page
 import '../view/view_category.dart'; // Import the ViewCategory page
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
+import 'dart:html' as html; // Import for setting the document title
 
 class DiscoverTab extends StatefulWidget {
   const DiscoverTab({super.key});
@@ -436,6 +437,8 @@ class _DiscoverTabState extends State<DiscoverTab> {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace'; // Set your desired title
     if (_isLoading) {
       return const Center(
         child: CircularProgressIndicator(),

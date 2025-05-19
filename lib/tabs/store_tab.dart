@@ -7,6 +7,7 @@ import '../edit/edit_store.dart';
 import '../add/add_product.dart';
 import '../edit/edit_product.dart';
 //import 'home_tab.dart';
+import 'dart:html' as html;
 
 class StoreTab extends StatefulWidget {
   const StoreTab({super.key});
@@ -35,6 +36,8 @@ class _StoreTabState extends State<StoreTab> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     return Scaffold(
       body: Column(
         children: [

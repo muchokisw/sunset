@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../view/view_product.dart';
 import '/theme_notifier.dart';
 import 'package:intl/intl.dart';
+import 'dart:html' as html;
 
 class ViewCategory extends StatefulWidget {
   final String categoryName;
@@ -197,6 +198,8 @@ class _ViewCategoryState extends State<ViewCategory> {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.categoryName),

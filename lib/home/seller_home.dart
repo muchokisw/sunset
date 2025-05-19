@@ -111,6 +111,10 @@ class _SellerHomeState extends State<SellerHome> {
 
   @override
   Widget build(BuildContext context) {
+    
+  // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sunset Preview'),

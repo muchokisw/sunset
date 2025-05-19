@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart'; // Import intl package
 import '../theme_notifier.dart'; // Import ThemeNotifier
 import '../view/view_product.dart'; // Import ViewProduct page
+import 'dart:html' as html; // Import for setting the title
 
 class CheckOut extends StatefulWidget {
   const CheckOut({super.key});
@@ -202,6 +203,8 @@ class _CheckOutState extends State<CheckOut> {
 
   @override
   Widget build(BuildContext context) {
+    // Always set the title on every build
+    html.document.title = 'Sunset Marketplace';
     return Scaffold(
       appBar: AppBar(
         title: const Text('Checkout'),
