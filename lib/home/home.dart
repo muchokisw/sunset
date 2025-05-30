@@ -38,9 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
-    // Always set the title on every build
     html.document.title = 'Sunset Marketplace';
+
+    final isWideScreen = MediaQuery.of(context).size.width > 850;
 
     return Scaffold(
       appBar: AppBar(
@@ -89,32 +89,106 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: _pages[_selectedIndex], // Display the selected page
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting, // Set the type to shifting
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.white, // Color for selected icons
-        unselectedItemColor: Colors.black, // Color for unselected icons
-        backgroundColor: Colors.grey, // Background color of the bar
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.grey, // Background color of the bar
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.lightbulb),
-            label: 'About',
-            backgroundColor: Colors.grey, // Background color of the bar
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.mail),
-            label: 'Contact',
-            backgroundColor: Colors.grey, // Background color of the bar
+      body: Row(
+        children: [
+          if (isWideScreen)
+            Theme(
+              data: Theme.of(context).copyWith(
+                focusColor: Theme.of(context).brightness == Brightness.light
+                    ? Colors.grey[400] // Light theme focus color
+                    : Colors.grey[600], // Dark theme focus color
+              ),
+              child: NavigationRail(
+                leading: const SizedBox(height: 5), // <-- Add this line for spacing
+                selectedIndex: _selectedIndex,
+                onDestinationSelected: _onItemTapped,
+                labelType: NavigationRailLabelType.all,
+                backgroundColor: Theme.of(context).brightness == Brightness.light
+                    ? Colors.white 
+                    : Colors.black,
+                indicatorColor: Theme.of(context).brightness == Brightness.light
+                    ? Colors.grey[200] // Light theme indicator
+                    : Colors.grey[900], // Dark theme indicator
+                selectedIconTheme: IconThemeData(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
+                  size: 28,
+                ),
+                unselectedIconTheme: IconThemeData(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
+                  size: 24,
+                ),
+                selectedLabelTextStyle: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+                unselectedLabelTextStyle: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.grey
+                      : Colors.grey[400],
+                ),
+                destinations: const [
+                  NavigationRailDestination(
+                    icon: Tooltip(
+                      message: 'Home',
+                      child: Icon(Icons.home),
+                    ),
+                    label: Text(''),
+                  ),
+                  NavigationRailDestination(
+                    icon: Tooltip(
+                      message: 'About',
+                      child: Icon(Icons.lightbulb),
+                    ),
+                    label: Text(''),
+                  ),
+                  NavigationRailDestination(
+                    icon: Tooltip(
+                      message: 'Contact',
+                      child: Icon(Icons.mail),
+                    ),
+                    label: Text(''),
+                  ),
+                ],
+              ),
+            ),
+          Expanded(
+            child: _pages[_selectedIndex],
           ),
         ],
       ),
+      bottomNavigationBar: isWideScreen
+          ? null
+          : BottomNavigationBar(
+              type: BottomNavigationBarType.shifting, // Set the type to shifting
+              currentIndex: _selectedIndex,
+              onTap: _onItemTapped,
+              selectedItemColor: Colors.white, // Color for selected icons
+              unselectedItemColor: Colors.black, // Color for unselected icons
+              backgroundColor: Colors.grey, // Background color of the bar
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                  backgroundColor: Colors.grey, // Background color of the bar
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.lightbulb),
+                  label: 'About',
+                  backgroundColor: Colors.grey, // Background color of the bar
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.mail),
+                  label: 'Contact',
+                  backgroundColor: Colors.grey, // Background color of the bar
+                ),
+              ],
+            ),
     );
   }
 }

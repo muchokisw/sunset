@@ -108,105 +108,243 @@ class _UserHomeState extends State<UserHome> {
 
   @override
   Widget build(BuildContext context) {
-
-      // Always set the title on every build
     html.document.title = 'Sunset Marketplace';
+
+    final isWideScreen = MediaQuery.of(context).size.width > 850;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sunset Preview'),
         actions: [
-         ValueListenableBuilder<ThemeMode>(
-          valueListenable: ThemeNotifier.themeMode,
-          builder: (context, mode, _) => IconButton(
-             icon: Icon(
-             mode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
-             ),
-             onPressed: () {
-              ThemeNotifier.toggleTheme();
+          ValueListenableBuilder<ThemeMode>(
+            valueListenable: ThemeNotifier.themeMode,
+            builder: (context, mode, _) => IconButton(
+              icon: Icon(
+                mode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
+              ),
+              onPressed: () {
+                ThemeNotifier.toggleTheme();
               },
             ),
           ),
         ],
       ),
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.black,
-        backgroundColor: Colors.grey,
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.auto_awesome),
-            label: 'Discover',
-            backgroundColor: Colors.grey,
-          ),
-          BottomNavigationBarItem(
-            icon: Stack(
-              children: [
-                const Icon(Icons.shopping_cart),
-                if (_cartItemCount > 0) // Show badge only if there are items
-                  Positioned(
-                    right: 0,
-                    top: 1,
-                    child: Container(
-                      padding: const EdgeInsets.all(3),
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Text(
-                        '$_cartItemCount',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+      body: Row(
+        children: [
+          if (isWideScreen)
+            Theme(
+              data: Theme.of(context).copyWith(
+                focusColor: Theme.of(context).brightness == Brightness.light
+                    ? Colors.grey[400]
+                    : Colors.grey[600],
+              ),
+              child: NavigationRail(
+                leading: const SizedBox(height: 5),
+                selectedIndex: _selectedIndex,
+                onDestinationSelected: _onItemTapped,
+                labelType: NavigationRailLabelType.all,
+                backgroundColor: Theme.of(context).brightness == Brightness.light
+                    ? Colors.white
+                    : Colors.black,
+                indicatorColor: Theme.of(context).brightness == Brightness.light
+                    ? Colors.grey[200]
+                    : Colors.grey[900],
+                selectedIconTheme: IconThemeData(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
+                  size: 28,
+                ),
+                unselectedIconTheme: IconThemeData(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
+                  size: 24,
+                ),
+                selectedLabelTextStyle: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+                unselectedLabelTextStyle: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.grey
+                      : Colors.grey[400],
+                ),
+                destinations: [
+                  const NavigationRailDestination(
+                    icon: Tooltip(
+                      message: 'Discover',
+                      child: Icon(Icons.auto_awesome),
+                    ),
+                    label: Text(''),
+                  ),
+                  NavigationRailDestination(
+                    icon: Tooltip(
+                      message: 'Cart',
+                      child: Stack(
+                        children: [
+                          const Icon(Icons.shopping_cart),
+                          if (_cartItemCount > 0)
+                            Positioned(
+                              right: 0,
+                              top: 1,
+                              child: Container(
+                                padding: const EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).brightness == Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Text(
+                                  '$_cartItemCount',
+                                  style: TextStyle(
+                                    color: Theme.of(context).brightness == Brightness.light
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
+                    label: const Text(''),
                   ),
-              ],
-            ),
-            label: 'Cart',
-            backgroundColor: Colors.grey,
-          ),
-          BottomNavigationBarItem(
-            icon: Stack(
-              children: [
-                const Icon(Icons.notifications),
-                if (_unreadNotificationCount > 0) // Show badge only if there are unread notifications
-                  Positioned(
-                    right: 0,
-                    top: 1,
-                    child: Container(
-                      padding: const EdgeInsets.all(3),
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Text(
-                        '$_unreadNotificationCount',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  NavigationRailDestination(
+                    icon: Tooltip(
+                      message: 'Notifications',
+                      child: Stack(
+                        children: [
+                          const Icon(Icons.notifications),
+                          if (_unreadNotificationCount > 0)
+                            Positioned(
+                              right: 0,
+                              top: 1,
+                              child: Container(
+                                padding: const EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).brightness == Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Text(
+                                  '$_unreadNotificationCount',
+                                  style: TextStyle(
+                                    color: Theme.of(context).brightness == Brightness.light
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
+                    label: const Text(''),
                   ),
-              ],
+                  const NavigationRailDestination(
+                    icon: Tooltip(
+                      message: 'Profile',
+                      child: Icon(Icons.person),
+                    ),
+                    label: Text(''),
+                  ),
+                ],
+              ),
             ),
-            label: 'Notifications',
-            backgroundColor: Colors.grey,
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-            backgroundColor: Colors.grey,
+          Expanded(
+            child: _pages[_selectedIndex],
           ),
         ],
       ),
+      bottomNavigationBar: isWideScreen
+          ? null
+          : BottomNavigationBar(
+              type: BottomNavigationBarType.shifting,
+              currentIndex: _selectedIndex,
+              onTap: _onItemTapped,
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.black,
+              backgroundColor: Colors.grey,
+              items: [
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.auto_awesome),
+                  label: 'Discover',
+                  backgroundColor: Colors.grey,
+                ),
+                BottomNavigationBarItem(
+                  icon: Stack(
+                    children: [
+                      const Icon(Icons.shopping_cart),
+                      if (_cartItemCount > 0)
+                        Positioned(
+                          right: 0,
+                          top: 1,
+                          child: Container(
+                            padding: const EdgeInsets.all(3),
+                            decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Text(
+                              '$_cartItemCount',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                  label: 'Cart',
+                  backgroundColor: Colors.grey,
+                ),
+                BottomNavigationBarItem(
+                  icon: Stack(
+                    children: [
+                      const Icon(Icons.notifications),
+                      if (_unreadNotificationCount > 0)
+                        Positioned(
+                          right: 0,
+                          top: 1,
+                          child: Container(
+                            padding: const EdgeInsets.all(3),
+                            decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Text(
+                              '$_unreadNotificationCount',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                  label: 'Notifications',
+                  backgroundColor: Colors.grey,
+                ),
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.person),
+                  label: 'Profile',
+                  backgroundColor: Colors.grey,
+                ),
+              ],
+            ),
     );
   }
 }
