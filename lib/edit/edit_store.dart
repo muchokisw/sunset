@@ -301,10 +301,10 @@ class _EditStorePageState extends State<EditStorePage> {
                               const SizedBox(width: 8),
                               ElevatedButton(
                                 onPressed: _updateStoreDetails,
-                                style: ElevatedButton.styleFrom(
+                                /*style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.grey,
                                   foregroundColor: Colors.black,
-                                ),
+                                ),*/
                                 child: const Text('Save'),
                               ),
                             ],

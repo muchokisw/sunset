@@ -35,13 +35,13 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.grey,
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.grey,
+              backgroundColor: Colors.white,
               foregroundColor: Colors.black,
               elevation: 0,
               toolbarHeight: 56,
             ),
             bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-              backgroundColor: Colors.grey,
+              backgroundColor: Colors.white,
             ),
             colorScheme: const ColorScheme.light(
               primary: Colors.grey,
@@ -69,8 +69,8 @@ class MyApp extends StatelessWidget {
             ),
             elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey,
-                foregroundColor: Colors.black,
+                backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
               ),
             ),
           ),
@@ -78,13 +78,13 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.black,
             scaffoldBackgroundColor: Colors.black,
             appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.grey,
-              foregroundColor: Colors.black,
+              backgroundColor: Colors.black,
+              foregroundColor: Colors.white,
               elevation: 0,
               toolbarHeight: 56,
             ),
             bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-              backgroundColor: Colors.grey,
+              backgroundColor: Colors.black,
             ),
             colorScheme: const ColorScheme.dark(
               primary: Colors.black,
@@ -117,7 +117,7 @@ class MyApp extends StatelessWidget {
             ),
             elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey,
+                backgroundColor: Colors.white,
                 foregroundColor: Colors.black,
               ),
             ),

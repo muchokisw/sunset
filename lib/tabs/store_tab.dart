@@ -315,8 +315,8 @@ class _StoreProfileTabState extends State<StoreProfileTab> {
                       child: ElevatedButton(
                         onPressed: _navigateToEditStorePage,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey,
-                          foregroundColor: Colors.black,
+                          //backgroundColor: Colors.grey,
+                          //foregroundColor: Colors.black,
                         ),
                         child: const Text('Edit Store'),
                       ),
@@ -567,8 +567,8 @@ class _ProductsTabState extends State<ProductsTab> {
                               });
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.grey,
-                              foregroundColor: Colors.black,
+                              //backgroundColor: Colors.grey,
+                              //foregroundColor: Colors.black,
                             ),
                             child: const Text('Edit Product'),
                           ),

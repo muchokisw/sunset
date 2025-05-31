@@ -207,8 +207,8 @@ class _ProfileTabState extends State<ProfileTab> {
                         ElevatedButton(
                           onPressed: _navigateToEditProfilePage,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey,
-                            foregroundColor: Colors.black,
+                            //backgroundColor: Colors.grey,
+                            //foregroundColor: Colors.black,
                           ),
                           child: const Text('Edit Profile'),
                         ),

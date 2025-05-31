@@ -271,77 +271,155 @@ class _UserHomeState extends State<UserHome> {
               type: BottomNavigationBarType.shifting,
               currentIndex: _selectedIndex,
               onTap: _onItemTapped,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.black,
-              backgroundColor: Colors.grey,
+              selectedItemColor: Theme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
+              unselectedItemColor: Theme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
+              backgroundColor: Theme.of(context).brightness == Brightness.light
+                  ? Colors.white
+                  : Colors.black,
               items: [
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.auto_awesome),
-                  label: 'Discover',
-                  backgroundColor: Colors.grey,
-                ),
                 BottomNavigationBarItem(
-                  icon: Stack(
+                  icon: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.shopping_cart),
-                      if (_cartItemCount > 0)
-                        Positioned(
-                          right: 0,
-                          top: 1,
-                          child: Container(
-                            padding: const EdgeInsets.all(3),
-                            decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Text(
-                              '$_cartItemCount',
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                      const Icon(Icons.auto_awesome),
+                      if (_selectedIndex == 0)
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          width: 24,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).brightness == Brightness.light
+                                ? Colors.grey[200]
+                                : Colors.black,
+                            borderRadius: BorderRadius.circular(2),
                           ),
                         ),
                     ],
                   ),
-                  label: 'Cart',
-                  backgroundColor: Colors.grey,
+                  label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: Stack(
+                  icon: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.notifications),
-                      if (_unreadNotificationCount > 0)
-                        Positioned(
-                          right: 0,
-                          top: 1,
-                          child: Container(
-                            padding: const EdgeInsets.all(3),
-                            decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Text(
-                              '$_unreadNotificationCount',
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
+                      Stack(
+                        children: [
+                          const Icon(Icons.shopping_cart),
+                          if (_cartItemCount > 0)
+                            Positioned(
+                              right: 0,
+                              top: 1,
+                              child: Container(
+                                padding: const EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).brightness == Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Text(
+                                  '$_cartItemCount',
+                                  style: TextStyle(
+                                    color: Theme.of(context).brightness == Brightness.light
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
                             ),
+                        ],
+                      ),
+                      if (_selectedIndex == 1)
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          width: 24,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).brightness == Brightness.light
+                                ? Colors.grey[200]
+                                : Colors.black,
+                            borderRadius: BorderRadius.circular(2),
                           ),
                         ),
                     ],
                   ),
-                  label: 'Notifications',
-                  backgroundColor: Colors.grey,
+                  label: '',
                 ),
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'Profile',
-                  backgroundColor: Colors.grey,
+                BottomNavigationBarItem(
+                  icon: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Stack(
+                        children: [
+                          const Icon(Icons.notifications),
+                          if (_unreadNotificationCount > 0)
+                            Positioned(
+                              right: 0,
+                              top: 1,
+                              child: Container(
+                                padding: const EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).brightness == Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Text(
+                                  '$_unreadNotificationCount',
+                                  style: TextStyle(
+                                    color: Theme.of(context).brightness == Brightness.light
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                      if (_selectedIndex == 2)
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          width: 24,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).brightness == Brightness.light
+                                ? Colors.grey[200]
+                                : Colors.black,
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                    ],
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.person),
+                      if (_selectedIndex == 3)
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          width: 24,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).brightness == Brightness.light
+                                ? Colors.grey[200]
+                                : Colors.black,
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                    ],
+                  ),
+                  label: '',
                 ),
               ],
             ),

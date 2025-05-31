@@ -352,7 +352,12 @@ class _ViewProductState extends State<ViewProduct> {
                                     //backgroundColor: Colors.grey,
                                     //foregroundColor: Colors.black,
                                   ),*/
-                                  child: const Icon(Icons.shopping_cart, color: Colors.black,),
+                                  child: Icon(
+                                        Icons.shopping_cart,
+                                          color: Theme.of(context).brightness == Brightness.light
+                                          ? Colors.white
+                                          : Colors.black,
+                                        ),
                                 )
                               : Row(
                                   mainAxisAlignment: MainAxisAlignment.start, // Align controls to the left

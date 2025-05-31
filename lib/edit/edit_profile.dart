@@ -478,10 +478,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             Center(
                               child: ElevatedButton(
                                 onPressed: _saveProfile,
-                                style: ElevatedButton.styleFrom(
+                                /*style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.grey,
                                   foregroundColor: Colors.black,
-                                ),
+                                ),*/
                                 child: const Text('Save'),
                               ),
                             ),

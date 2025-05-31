@@ -46,19 +46,22 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Sunset Preview'), // Updated title
         actions: [
-          ElevatedButton(
+            ElevatedButton(
             onPressed: () {
               Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SignIn()),
+              context,
+              MaterialPageRoute(builder: (context) => const SignIn()),
               );
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black, // Button background color
-              foregroundColor: Colors.grey, // Button text color
+              //backgroundColor: Colors.grey, // Button background color
+              //foregroundColor: Colors.black, // Button text color
               elevation: 2, // Add slight elevation
             ),
-            child: const Text('Sign In'),
+            child: const Text(
+              'Sign In',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
           const SizedBox(width: 8), // Add spacing between buttons
           /*ElevatedButton(
@@ -165,27 +168,81 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: isWideScreen
           ? null
           : BottomNavigationBar(
-              type: BottomNavigationBarType.shifting, // Set the type to shifting
+              type: BottomNavigationBarType.shifting,
               currentIndex: _selectedIndex,
               onTap: _onItemTapped,
-              selectedItemColor: Colors.white, // Color for selected icons
-              unselectedItemColor: Colors.black, // Color for unselected icons
-              backgroundColor: Colors.grey, // Background color of the bar
-              items: const [
+              selectedItemColor: Theme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
+              unselectedItemColor: Theme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
+              backgroundColor: Theme.of(context).brightness == Brightness.light
+                  ? Colors.white
+                  : Colors.black,
+              items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                  backgroundColor: Colors.grey, // Background color of the bar
+                  icon: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.home),
+                      if (_selectedIndex == 0)
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          width: 24,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).brightness == Brightness.light
+                                ? Colors.grey[200] // Same as NavigationRail indicator
+                                : Colors.black,
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                    ],
+                  ),
+                  label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.lightbulb),
-                  label: 'About',
-                  backgroundColor: Colors.grey, // Background color of the bar
+                  icon: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.lightbulb),
+                      if (_selectedIndex == 1)
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          width: 24,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).brightness == Brightness.light
+                                ? Colors.grey[200]
+                                : Colors.black,
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                    ],
+                  ),
+                  label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.mail),
-                  label: 'Contact',
-                  backgroundColor: Colors.grey, // Background color of the bar
+                  icon: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.mail),
+                      if (_selectedIndex == 2)
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          width: 24,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).brightness == Brightness.light
+                                ? Colors.grey[200]
+                                : Colors.black,
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                    ],
+                  ),
+                  label: '',
                 ),
               ],
             ),

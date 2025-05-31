@@ -333,8 +333,12 @@ class _ViewCategoryState extends State<ViewCategory> {
                                               _cartQuantities[product['productId']] == null
                                                   ? ElevatedButton(
                                                       onPressed: () => _addToCart(product),
-                                                        child: const Icon(Icons.shopping_cart, 
-                                                        color: Colors.black),
+                                                        child: Icon(
+                                                                  Icons.shopping_cart,
+                                                                  color: Theme.of(context).brightness == Brightness.light
+                                                                    ? Colors.white
+                                                                    : Colors.black,
+                                                                ),
                                                     )
                                                   : Row(
                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

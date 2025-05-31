@@ -261,10 +261,10 @@ class _EditCategoryPageState extends State<EditCategoryPage> {
                                 const SizedBox(width: 8),
                                 ElevatedButton(
                                   onPressed: _updateCategoryDetails,
-                                  style: ElevatedButton.styleFrom(
+                                  /*style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.grey,
                                     foregroundColor: Colors.black,
-                                  ),
+                                  ),*/
                                   child: const Text('Save'),
                                 ),
                               ],

@@ -683,7 +683,12 @@ class _DiscoverTabState extends State<DiscoverTab> {
                                       _cartQuantities[product['productId']] == null
                                           ? ElevatedButton(
                                               onPressed: () => _addToCart(product),
-                                              child: const Icon(Icons.shopping_cart),
+                                                child: Icon(
+                                                Icons.shopping_cart,
+                                                color: Theme.of(context).brightness == Brightness.dark
+                                                  ? Colors.black
+                                                  : Colors.white,
+                                                ),
                                             )
                                           : Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -725,10 +730,17 @@ class _DiscoverTabState extends State<DiscoverTab> {
             MaterialPageRoute(builder: (context) => const ChatbotScreen()),
           );
         },
-        backgroundColor: Colors.grey,
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black,
         tooltip: 'Shop Assist',
         heroTag: 'geminiChatFAB',
-        child: const Icon(Icons.auto_awesome, color: Colors.black),
+        child: Icon(
+          Icons.auto_awesome,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.black
+              : Colors.white,
+        ),
       ),
     );
   }
@@ -823,9 +835,14 @@ class _DiscoverTabState extends State<DiscoverTab> {
                                       ? ElevatedButton(
                                           onPressed: () => _addToCart(product),
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.grey,
+                                            //backgroundColor: Colors.grey,
                                           ),
-                                          child: const Icon(Icons.shopping_cart, color: Colors.black),
+                                            child: Icon(
+                                            Icons.shopping_cart,
+                                            color: Theme.of(context).brightness == Brightness.dark
+                                              ? Colors.black
+                                              : Colors.white,
+                                            ),
                                         )
                                       : Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -529,7 +529,12 @@ Future<void> _loadData() async {
                                                         _cartQuantities[product['productId']] == null
                                                             ? ElevatedButton(
                                                                 onPressed: () => _addToCart(product),
-                                                                child: const Icon(Icons.shopping_cart, color: Colors.black),
+                                                                child: Icon(
+                                                                  Icons.shopping_cart,
+                                                                  color: Theme.of(context).brightness == Brightness.light
+                                                                    ? Colors.white
+                                                                    : Colors.black,
+                                                                ),
                                                               )
                                                             : Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -661,7 +666,12 @@ Future<void> _loadData() async {
                                             _cartQuantities[product['productId']] == null
                                                 ? ElevatedButton(
                                                     onPressed: () => _addToCart(product),
-                                                    child: const Icon(Icons.shopping_cart, color: Colors.black),
+                                                    child: Icon(
+                                                      Icons.shopping_cart,
+                                                      color: Theme.of(context).brightness == Brightness.light
+                                                        ? Colors.white
+                                                        : Colors.black,
+                                                    ),
                                                   )
                                                 : Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -703,10 +713,17 @@ Future<void> _loadData() async {
             MaterialPageRoute(builder: (context) => const ChatbotScreen()),
           );
         },
-        backgroundColor: Colors.grey,
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black,
         tooltip: 'Shop Assist', // Tooltip for the FAB
         heroTag: 'homeChatFAB', // Unique hero tag for this FAB
-        child: const Icon(Icons.auto_awesome, color: Colors.black),
+        child: Icon(
+          Icons.auto_awesome,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.black
+              : Colors.white,
+        ),
       ),
     );
   }
