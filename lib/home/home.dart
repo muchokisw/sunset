@@ -46,6 +46,18 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Sunset Preview'), // Updated title
         actions: [
+          ValueListenableBuilder<ThemeMode>(
+            valueListenable: ThemeNotifier.themeMode,
+            builder: (context, mode, _) => IconButton(
+              icon: Icon(
+                mode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
+              ),
+              onPressed: () {
+                ThemeNotifier.toggleTheme();
+              },
+            ),
+          ),
+          const SizedBox(width: 8),
             ElevatedButton(
             onPressed: () {
               Navigator.push(
@@ -79,17 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const Text('Sign Up'),
           ),
           const SizedBox(width: 8),*/ // Add spacing between buttons
-          ValueListenableBuilder<ThemeMode>(
-            valueListenable: ThemeNotifier.themeMode,
-            builder: (context, mode, _) => IconButton(
-              icon: Icon(
-                mode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
-              ),
-              onPressed: () {
-                ThemeNotifier.toggleTheme();
-              },
-            ),
-          ),
         ],
       ),
       body: Row(
