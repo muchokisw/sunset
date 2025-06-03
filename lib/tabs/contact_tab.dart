@@ -76,7 +76,7 @@ class _ContactTabState extends State<ContactTab> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Text(
-                        'Need to contact us? Fill out the form below and we’ll get back to you as soon as possible.',
+                        'Have a question or feedback? Fill out the form below and a response will be sent to you as soon as possible.',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
                       ),
@@ -99,8 +99,8 @@ class _ContactTabState extends State<ContactTab> {
                                 child: TextFormField(
                                   controller: _nameController,
                                   decoration: InputDecoration(
-                                    hintText: 'Name',
-                                    hintStyle: TextStyle(
+                                    labelText: 'Name',
+                                    labelStyle: TextStyle(
                                       color: Theme.of(context).brightness == Brightness.light
                                           ? Colors.grey
                                           : Colors.grey[700],
@@ -132,8 +132,8 @@ class _ContactTabState extends State<ContactTab> {
                                 child: TextFormField(
                                   controller: _emailController,
                                   decoration: InputDecoration(
-                                    hintText: 'Email',
-                                    hintStyle: TextStyle(
+                                    labelText: 'Email',
+                                    labelStyle: TextStyle(
                                       color: Theme.of(context).brightness == Brightness.light
                                           ? Colors.grey
                                           : Colors.grey[700],
@@ -169,8 +169,8 @@ class _ContactTabState extends State<ContactTab> {
                                   controller: _messageController,
                                   maxLines: 4,
                                   decoration: InputDecoration(
-                                    hintText: 'Message',
-                                    hintStyle: TextStyle(
+                                    labelText: 'Message',
+                                    labelStyle: TextStyle(
                                       color: Theme.of(context).brightness == Brightness.light
                                           ? Colors.grey
                                           : Colors.grey[700],

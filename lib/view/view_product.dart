@@ -331,12 +331,16 @@ class _ViewProductState extends State<ViewProduct> {
                           // Product Name
                           Text(
                             widget.product['name'] ?? 'N/A',
-                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 18, 
+                            //fontWeight: FontWeight.bold
+                            ),
                           ),
                           // Product Price
                           Text(
                             '${formatPrice(widget.product['price']?.toInt() ?? 0)}/-', // Format price with commas
-                            style: const TextStyle(fontSize: 16),
+                            style: const TextStyle(fontSize: 16, 
+                            //fontWeight: FontWeight.bold
+                            ),
                           ),
                           // Product Description
                           Text(

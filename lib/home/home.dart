@@ -41,11 +41,34 @@ class _HomeScreenState extends State<HomeScreen> {
     html.document.title = 'Sunset Marketplace';
 
     final isWideScreen = MediaQuery.of(context).size.width > 850;
+    final isSmallScreen = MediaQuery.of(context).size.width < 850;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sunset Preview'), // Updated title
+        title: isSmallScreen
+            ? const Text(' ')
+            : const Text('Sunset Preview'), // Blank title for small screens
         actions: [
+          const SizedBox(width: 8),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SignIn()),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              //backgroundColor: Colors.grey, // Button background color
+              //foregroundColor: Colors.black, // Button text color
+              elevation: 2, // Add slight elevation
+            ),
+            child: const Text(
+              'Sign In',
+              //style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          const SizedBox(width: 8),
+          
           ValueListenableBuilder<ThemeMode>(
             valueListenable: ThemeNotifier.themeMode,
             builder: (context, mode, _) => IconButton(
@@ -57,25 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
-          const SizedBox(width: 8),
-            ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SignIn()),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              //backgroundColor: Colors.grey, // Button background color
-              //foregroundColor: Colors.black, // Button text color
-              elevation: 2, // Add slight elevation
-            ),
-            child: const Text(
-              'Sign In',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-          const SizedBox(width: 8), // Add spacing between buttons
+          const SizedBox(width: 16),
+           // Add spacing between buttons
           /*ElevatedButton(
             onPressed: () {
               Navigator.push(
@@ -129,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Theme.of(context).brightness == Brightness.light
                       ? Colors.black
                       : Colors.white,
-                  fontWeight: FontWeight.bold,
+                  //fontWeight: FontWeight.bold,
                 ),
                 unselectedLabelTextStyle: TextStyle(
                   color: Theme.of(context).brightness == Brightness.light

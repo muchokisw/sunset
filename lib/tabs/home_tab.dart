@@ -383,7 +383,7 @@ Future<void> _loadData() async {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
         child: Column(
           children: [
             // Search Bar
@@ -437,7 +437,7 @@ Future<void> _loadData() async {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             // Display Search Results or Categories
             Expanded(
               child: _searchQuery.isEmpty
@@ -462,7 +462,9 @@ Future<void> _loadData() async {
                             Center(
                               child: Text(
                                 category['name'] ?? 'N/A',
-                                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                                style: const TextStyle(fontSize: 24, 
+                                //fontWeight: FontWeight.bold
+                                ),
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -517,13 +519,16 @@ Future<void> _loadData() async {
                                                           product['name'] ?? 'N/A',
                                                           style: const TextStyle(
                                                             fontSize: 16,
-                                                            fontWeight: FontWeight.bold,
+                                                            //fontWeight: FontWeight.bold,
                                                           ),
                                                         ),
                                                         const SizedBox(height: 4),
                                                         Text(
                                                           '${formatPrice(product['price']?.toInt() ?? 0)}/-', // Format price with commas
-                                                          style: const TextStyle(fontSize: 14),
+                                                          style: const TextStyle(
+                                                            fontSize: 14,
+                                                            //fontWeight: FontWeight.bold,
+                                                            ),
                                                         ),
                                                         const SizedBox(height: 8),
                                                         _cartQuantities[product['productId']] == null
@@ -654,13 +659,15 @@ Future<void> _loadData() async {
                                               product['name'] ?? 'N/A',
                                               style: const TextStyle(
                                                 fontSize: 16,
-                                                fontWeight: FontWeight.bold,
+                                                //fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                             const SizedBox(height: 4),
                                             Text(
                                               '${formatPrice(product['price']?.toInt() ?? 0)}/-', // Format price and add /- at the end
-                                              style: const TextStyle(fontSize: 14),
+                                              style: const TextStyle(fontSize: 14, 
+                                              //fontWeight: FontWeight.bold
+                                              ),
                                             ),
                                             const SizedBox(height: 8),
                                             _cartQuantities[product['productId']] == null
@@ -706,23 +713,26 @@ Future<void> _loadData() async {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ChatbotScreen()),
-          );
-        },
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? Colors.white
-            : Colors.black,
-        tooltip: 'Shop Assist', // Tooltip for the FAB
-        heroTag: 'homeChatFAB', // Unique hero tag for this FAB
-        child: Icon(
-          Icons.auto_awesome,
-          color: Theme.of(context).brightness == Brightness.dark
-              ? Colors.black
-              : Colors.white,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(10.0), // Add padding around the FAB
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ChatbotScreen()),
+            );
+          },
+          backgroundColor: Theme.of(context).brightness == Brightness.dark
+              ? Colors.white
+              : Colors.black,
+          tooltip: 'Shop Assist',
+          heroTag: 'homeChatFAB',
+          child: Icon(
+            Icons.auto_awesome,
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.black // Dark theme icon color
+                : Colors.white,
+          ),
         ),
       ),
     );

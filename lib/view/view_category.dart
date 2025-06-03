@@ -321,13 +321,13 @@ class _ViewCategoryState extends State<ViewCategory> {
                                                 product['name'] ?? 'N/A',
                                                 style: const TextStyle(
                                                   fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
+                                                  //fontWeight: FontWeight.bold,
                                                 ),
                                               ),
                                               const SizedBox(height: 4),
                                               Text(
                                                 '${formatPrice(product['price']?.toInt() ?? 0)}/-', // Format price with commas
-                                                style: const TextStyle(fontSize: 14),
+                                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                                               ),
                                               const SizedBox(height: 8),
                                               _cartQuantities[product['productId']] == null

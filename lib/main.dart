@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
       builder: (context, themeMode, child) {
         return MaterialApp(
           theme: ThemeData(
+            fontFamily: 'Montserrat', // Add this line
             primaryColor: Colors.grey,
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: const AppBarTheme(
@@ -75,6 +76,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           darkTheme: ThemeData(
+            fontFamily: 'Montserrat', // Add this line
             primaryColor: Colors.black,
             scaffoldBackgroundColor: Colors.black,
             appBarTheme: const AppBarTheme(

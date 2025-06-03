@@ -129,7 +129,7 @@ class _SignInState extends State<SignIn> {
                       'Welcome',
                       style: TextStyle(
                         fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                        //fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center, // Center the text
                     ),
@@ -150,8 +150,8 @@ class _SignInState extends State<SignIn> {
                             Expanded(
                               child: TextFormField(
                                 decoration: InputDecoration(
-                                  hintText: 'Email',
-                                  hintStyle: TextStyle(
+                                  labelText: 'Email', // This will float above the border when typing
+                                  labelStyle: TextStyle(
                                     color: Theme.of(context).brightness == Brightness.light
                                         ? Colors.grey
                                         : Colors.grey[700],
@@ -192,8 +192,8 @@ class _SignInState extends State<SignIn> {
                             Expanded(
                               child: TextFormField(
                                 decoration: InputDecoration(
-                                  hintText: 'Password',
-                                  hintStyle: TextStyle(
+                                  labelText: 'Password', // This will float above the border when typing
+                                  labelStyle: TextStyle(
                                     color: Theme.of(context).brightness == Brightness.light
                                         ? Colors.grey
                                         : Colors.grey[700],

@@ -313,6 +313,7 @@ class _NormalSignupState extends State<NormalSignup> {
     Widget? suffixIcon,
     int maxLines = 1,
     bool readOnly = false, // Default to false for fields that allow input
+    bool useLabelText = true, // Add this parameter
   }) {
     final hintTextColor = Theme.of(context).brightness == Brightness.light
         ? Colors.grey[600]
@@ -330,9 +331,12 @@ class _NormalSignupState extends State<NormalSignup> {
         controller: controller,
         obscureText: obscureText,
         maxLines: maxLines,
-        readOnly: readOnly, // Apply readOnly only when needed
+        readOnly: readOnly,
         decoration: InputDecoration(
-          hintText: hintText,
+          // Use labelText for all except date of birth
+          labelText: useLabelText ? hintText : null,
+          labelStyle: TextStyle(color: hintTextColor),
+          hintText: useLabelText ? null : hintText,
           hintStyle: TextStyle(color: hintTextColor),
           border: InputBorder.none,
           focusedBorder: InputBorder.none,

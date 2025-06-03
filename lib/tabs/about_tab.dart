@@ -71,7 +71,7 @@ class _AboutTabState extends State<AboutTab> {
                       ),
                       const SizedBox(height: 16.0),
                       const Text(
-                        'Our platform provides personalized shopping experiences and efficient supply chain solutions.',
+                        'The platform provides personalized shopping experiences and efficient supply chain solutions.',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
                       ),
@@ -103,8 +103,8 @@ class _AboutTabState extends State<AboutTab> {
                                       child: TextFormField(
                                         controller: _emailController,
                                         decoration: InputDecoration(
-                                          hintText: 'Email',
-                                          hintStyle: TextStyle(
+                                          labelText: 'Email',
+                                          labelStyle: TextStyle(
                                             color: Theme.of(context).brightness == Brightness.light
                                                 ? Colors.grey
                                                 : Colors.grey[700],
