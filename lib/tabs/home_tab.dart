@@ -575,6 +575,7 @@ Future<void> _loadData() async {
                                     top: 0,
                                     bottom: 0,
                                     child: IconButton(
+                                      hoverColor: Colors.grey.withOpacity(0.3),
                                       icon: Icon(Icons.arrow_forward, color: Colors.black.withOpacity(0.0)), // Transparent icon for left arrow
                                       onPressed: () {
                                         categoryScrollController.animateTo(
@@ -591,6 +592,7 @@ Future<void> _loadData() async {
                                     top: 0,
                                     bottom: 0,
                                     child: IconButton(
+                                      hoverColor: Colors.black.withOpacity(0.3),
                                       // ignore: duplicate_ignore
                                       // ignore: deprecated_member_use
                                       icon: Icon(Icons.arrow_forward, color: Colors.black.withOpacity(0.0)),
